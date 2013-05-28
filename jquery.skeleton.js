@@ -43,7 +43,7 @@ $.fn.skeleton = function(options) {
 })(jQuery);
 
 var myPlugin = $('#foo').skeleton();
-skeleton.bar();
+myPlugin.bar();
 
 var myPlugin2 = $('#bar').skeleton();
-skeleton.bar();
+myPlugin2.bar();
