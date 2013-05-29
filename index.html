@@ -7,12 +7,21 @@
 		<script type="text/javascript">
 		jQuery(document).ready(function(){
 			var plugA = jQuery('.a').skeleton();
-			$(plugA[1]).skeleton('bar', {color: 'red'}); // werkt 
-			$(plugA[2]).skeleton('bar', {color: 'deeppink', 'label': 'lawl'}); // werkt 
+			$("#c").click(function(){
+				plugA.skeleton("changeIt");
+			});
+			$('#t').toggle(function(){
+				//plugA.skeleton('changeIt', {changeColor: '#ccc'});
+			}, function(){
+				//plugA.skeleton('changeIt', {changeColor: 'brown'});
+			});
 		});
 		</script>
 	</head>
 	<body>
+		<button id="c">klik A</button>
+		<button id="d">klik B</button>
+		<button id="t">toggle</button>
 		<div class="a">a</div>
 		<div class="a">a</div>
 		<div class="a">a</div>
@@ -20,8 +29,9 @@
 		<div class="b">b</div>
 	</body>
 	<script type="text/javascript">
-		var plug = $('.b').skeleton(); // is te snel met executen maar zou moeten werken in de footer
-		plug.skeleton('bar'); // doet niks
-		$(plug[1]).skeleton('bar', {label: 'dude'});
+		var plug = $('.b').skeleton({color: 'red'}); // is te snel met executen maar zou moeten werken in de footer
+		$("#d").click(function(){
+			plug.skeleton("changeIt", {changeColor: "yellow"});
+		});
 	</script>
 </html>
