@@ -10,21 +10,28 @@
 			$("#c").click(function(){
 				plugA.skeleton("changeIt");
 			});
-			$('#t').toggle(function(){
-				//plugA.skeleton('changeIt', {changeColor: '#ccc'});
-			}, function(){
-				//plugA.skeleton('changeIt', {changeColor: 'brown'});
+			$('#s1').click(function(){
+				//console.log(plugA);
+				plugA.skeleton('setStuff', 1, 'sadlkf');
 			});
+			$('#s2').click(function(){
+				//console.log(plugA);
+				console.log(plugA.skeleton('getStuff', 1).data('stuff'));
+			});
+
 		});
 		</script>
 	</head>
 	<body>
 		<button id="c">klik A</button>
 		<button id="d">klik B</button>
-		<button id="t">toggle</button>
+		<button id="s1">set1</button>
+		<button id="s2">setall</button>
+
 		<div class="a">a</div>
 		<div class="a">a</div>
 		<div class="a">a</div>
+		
 		<div class="b">b</div>
 		<div class="b">b</div>
 	</body>
