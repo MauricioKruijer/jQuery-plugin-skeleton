@@ -1,73 +1,47 @@
-;(function($, window, document, undefined){
+(function( $ ) {
+	$.fn.skeleton = function(options) {
+		var settings = $.extend({
+			color: "#556b2f",
+			backgroundColor: "white",
+			controls: true
+		}, options );
 
-	$.fn.skeleton = function(options) { 
+		var $t = $(this);
+		
+		function goToPosition(to) {
+			$t.animate({left: to});
+		}
 
-		var defaults = {
-			label: 'yeahhhhh',
-			color: 'green',
-			changeColor: 'orange'
-		};
+		$t.bind('goToPosition', function (event, to) { 
+			goToPosition(to);
+		});
 
-		var methods = {
-			"username": "mauz0",
-			"backupColor": false,
+		// ik weet niet waarom ik dit niet in die .each() zet maar ja
+		this.wrap('<div>');
+		this.parent('div').css({width: 200, height: 100, overflow: 'hidden', position: 'relative'});
+		this.css({'width': 750, position: 'absolute'});
+		// einde
+		
+		return this.each(function() {
+			var $this = $(this);
 
-			"init": function (options) {
-				options = $.extend({}, defaults, options);
-				this.each(function(i){
-					$(this).data('stuff', 'rofl'+i);
-				});
-				console.log('init');
-				this.css('color', options.color);
-			},
-			"bar": function (options) {
-				// Do whatever
-				console.log('boem!');
+			
+			$this.css('list-style', "none").children('li').css({'float': 'left', 'height': 90, width: 100, margin: 10, backgroundColor: 'red'});
 
-				console.log(methods.getUsername());
+			var $next = $('<a href="#">').text('next').click(function(e) {
+					e.preventDefault();
+					goToPosition('-=50');
+				}),
+				$prev = $('<a href="#">').text('prev').click(function(e) {
+					e.preventDefault();
+					goToPosition('+=50');
+				}),
+				$controls = $('<div>').css('border', '1px solid');
 
-				options = $.extend({}, defaults, options);
-				this.css('color', options.color).text(this.text() + ' ' + options.label);
-			},
-			"getUsername": function() {
-				return this.username;
-			}, 
-			"setUsername": function(name) {
-				this.username = name;
-			}, 
-			"changeIt": function(params) {
-				var localOptions = $.extend({}, defaults, params);
-				console.log(this);
-				this.css('color', localOptions.changeColor);
-			},
-			"setStuff": function(index, value) {
-				console.log($(this[index]).data('stuff', value));
-				
-				//console.log(val, this);
-			},
-			"getStuff": function(index) {
-				// console.log();
-				var test = $(this[index]).data('stuff');
-				console.log	(test);
-			return $(this[index]).data('stuff');
-			}
-		};
+			$next.appendTo($controls);
+			$prev.appendTo($controls);
 
-
-		var args = arguments;
-		var argss = Array.prototype.slice.call(args, 1);
-
-		//return this.each(function() {
-			var $this = $(this);  // Might make sense to ignore this and just pass `this` to the following things
-			if (methods[options]) {
-				methods[options].apply($this, argss);
-			} else if (typeof options === "object" || !options) {
-				methods.init.apply($this, args);
-			} else {
-				$.error("options " + options + " does not exist on jQuery.pollServer");
-			}
-		//});
-
-		return this;
-	};
-})(jQuery, window, document);
+			if(settings.controls) $controls.insertAfter($this.parent('div'));
+		});
+	}
+}(jQuery));

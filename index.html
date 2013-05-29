@@ -2,43 +2,59 @@
 <html>
 	<head>
 		<title>Testcase</title>
-		<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="jquery.skeleton.js"></script>
 		<script type="text/javascript">
 		jQuery(document).ready(function(){
-			var plugA = jQuery('.a').skeleton();
-			$("#c").click(function(){
-				plugA.skeleton("changeIt");
+			$('#control').skeleton();
+			var $ding = $('#nocontrol').skeleton({controls: false});
+			
+			$('#n').click(function(){
+				$ding.trigger('goToPosition', ["-=100"]);
 			});
-			$('#s1').click(function(){
-				//console.log(plugA);
-				plugA.skeleton('setStuff', 1, 'sadlkf');
-			});
-			$('#s2').click(function(){
-				//console.log(plugA);
-				console.log(plugA.skeleton('getStuff', 1).data('stuff'));
+			$('#p').click(function(){
+				$ding.trigger('goToPosition', ["+=100"]);
 			});
 
 		});
 		</script>
 	</head>
 	<body>
-		<button id="c">klik A</button>
-		<button id="d">klik B</button>
-		<button id="s1">set1</button>
-		<button id="s2">setall</button>
-
-		<div class="a">a</div>
-		<div class="a">a</div>
-		<div class="a">a</div>
-		
-		<div class="b">b</div>
-		<div class="b">b</div>
+		<ul id="control">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+			<li>f</li>
+			<li>g</li>
+			<li>h</li>
+			<li>i</li>
+			<li>j</li>
+			<li>k</li>
+			<li>l</li>
+			<li>m</li>
+			<li>n</li>
+			<li>o</li>
+		</ul>
+		<ul id="nocontrol">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+			<li>f</li>
+			<li>g</li>
+			<li>h</li>
+			<li>i</li>
+			<li>j</li>
+			<li>k</li>
+			<li>l</li>
+			<li>m</li>
+			<li>n</li>
+			<li>o</li>
+		</ul>
+		<button id="n">next</button>
+		<button id="p">prev</button>
 	</body>
-	<script type="text/javascript">
-		var plug = $('.b').skeleton({color: 'red'}); // is te snel met executen maar zou moeten werken in de footer
-		$("#d").click(function(){
-			plug.skeleton("changeIt", {changeColor: "yellow"});
-		});
-	</script>
 </html>
