@@ -26,10 +26,12 @@
 			this.css('color', options.color).text(this.text() + ' ' + options.label);
 		},
 		"getUsername": function() {
-			return this.username;
+			// Why can't I use this. ?
+			return optionss.username;
 		}, 
 		"setUsername": function(name) {
-			this.username = name;
+			// Why can't I use this. ?
+			optionss.username = name;
 		}
 	};
 
